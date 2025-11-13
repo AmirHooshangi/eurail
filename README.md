@@ -14,7 +14,6 @@ docker-compose up --build
 mvn spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 
-H2 console available at `http://localhost:8080/h2-console`
 
 App runs on `http://localhost:8080`
 
@@ -45,4 +44,3 @@ App runs on `http://localhost:8080`
 
 Uses Flyway for migrations. Schema in `src/main/resources/db/migration/`.
 
-See [DATABASE_DESIGN.md](DATABASE_DESIGN.md) for schema details.
