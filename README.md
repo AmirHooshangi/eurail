@@ -14,6 +14,12 @@ docker-compose up --build
 mvn spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 
+**Kubernetes (Minikube):**
+```bash
+cd kubernetes
+bash deploy.sh
+minikube service eurail-app -n eurail-zoo
+```
 
 App runs on `http://localhost:8080`
 
@@ -43,6 +49,16 @@ App runs on `http://localhost:8080`
 ## Database
 
 Uses Flyway for migrations. Schema in `src/main/resources/db/migration/`.
+
+## Kubernetes Deployment
+
+See [kubernetes/README.md](kubernetes/README.md) for complete deployment guide to Minikube.
+
+Quick start:
+```bash
+cd kubernetes
+./deploy.sh
+```
 
 ## Production Readiness Checklist
 
