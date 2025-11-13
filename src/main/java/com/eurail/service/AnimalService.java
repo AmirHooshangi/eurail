@@ -88,17 +88,11 @@ public class AnimalService {
         );
         
         AnimalRoom animalRoom = new AnimalRoom();
-        animalRoom.setAnimalId(animalId);
         animalRoom.setAnimal(animal);
         animalRoom.setRoom(room);
         animalRoomRepository.save(animalRoom);
         
         return toResponse(animal);
-    }
-    
-    @Transactional
-    public AnimalResponse moveAnimal(Long animalId, Long newRoomId) {
-        return placeAnimalInRoom(animalId, newRoomId);
     }
     
     @Transactional

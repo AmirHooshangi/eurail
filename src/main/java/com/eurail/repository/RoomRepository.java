@@ -12,11 +12,10 @@ import java.util.Optional;
 public interface RoomRepository extends JpaRepository<Room, Long> {
     Optional<Room> findByTitle(String title);
     
-    @Query("SELECT r, COUNT(afr.animal.id) as favoriteCount " +
+    @Query("SELECT r.title, COUNT(afr.animal.id) " +
            "FROM Room r " +
            "JOIN AnimalFavoriteRoom afr ON r.id = afr.room.id " +
-           "GROUP BY r.id, r.title, r.created, r.updated " +
-           "ORDER BY favoriteCount DESC")
+           "GROUP BY r.title")
     List<Object[]> findFavoriteRoomsWithCount();
 }
 

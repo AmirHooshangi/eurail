@@ -27,7 +27,6 @@ App runs on `http://localhost:8080`
 - `PUT /api/animals/{id}` - Update
 - `DELETE /api/animals/{id}` - Delete
 - `POST /api/animals/{animalId}/rooms/{roomId}` - Place in room
-- `PUT /api/animals/{animalId}/rooms/{roomId}` - Move to room
 - `DELETE /api/animals/{animalId}/rooms` - Remove from room
 - `GET /api/animals/rooms/{roomId}?page=0&size=10&sortBy=title` - List in room
 

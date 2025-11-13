@@ -19,7 +19,8 @@ public class AnimalRoom {
     private Long animalId;
     
     @OneToOne
-    @JoinColumn(name = "animal_id", nullable = false, unique = true, insertable = false, updatable = false)
+    @MapsId
+    @JoinColumn(name = "animal_id", nullable = false, unique = true)
     private Animal animal;
     
     @ManyToOne

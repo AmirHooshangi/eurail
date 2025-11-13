@@ -60,13 +60,6 @@ public class AnimalController {
         return ResponseEntity.ok(animalService.placeAnimalInRoom(animalId, roomId));
     }
     
-    @PutMapping("/{animalId}/rooms/{roomId}")
-    public ResponseEntity<AnimalResponse> moveAnimal(
-            @PathVariable Long animalId,
-            @PathVariable Long roomId) {
-        return ResponseEntity.ok(animalService.moveAnimal(animalId, roomId));
-    }
-    
     @DeleteMapping("/{animalId}/rooms")
     public ResponseEntity<Void> removeAnimalFromRoom(@PathVariable Long animalId) {
         animalService.removeAnimalFromRoom(animalId);

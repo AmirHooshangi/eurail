@@ -5,6 +5,7 @@ import com.eurail.dto.RoomRequest;
 import com.eurail.dto.RoomResponse;
 import com.eurail.model.Animal;
 import com.eurail.model.AnimalFavoriteRoom;
+import com.eurail.model.AnimalFavoriteRoomId;
 import com.eurail.model.Room;
 import com.eurail.repository.AnimalFavoriteRoomRepository;
 import com.eurail.repository.AnimalRepository;
@@ -90,21 +91,26 @@ public class RoomService {
     
     @Transactional
     public void unfavoriteRoom(Long animalId, Long roomId) {
-        Animal animal = animalRepository.findById(animalId)
+        animalRepository.findById(animalId)
             .orElseThrow(() -> new IllegalArgumentException("Animal not found: " + animalId));
-        Room room = roomRepository.findById(roomId)
+        roomRepository.findById(roomId)
             .orElseThrow(() -> new IllegalArgumentException("Room not found: " + roomId));
         
-        animalFavoriteRoomRepository.deleteByAnimalAndRoom(animal, room);
+        if (animalFavoriteRoomRepository.findByAnimalIdAndRoomId(animalId, roomId).isEmpty()) {
+            throw new IllegalArgumentException("Favorite not found");
+        }
+        
+        AnimalFavoriteRoomId id = new AnimalFavoriteRoomId(animalId, roomId);
+        animalFavoriteRoomRepository.deleteById(id);
     }
     
     public List<FavoriteRoomResponse> getFavoriteRooms() {
         List<Object[]> results = roomRepository.findFavoriteRoomsWithCount();
         return results.stream()
             .map(result -> {
-                Room room = (Room) result[0];
+                String title = (String) result[0];
                 Long count = ((Number) result[1]).longValue();
-                return new FavoriteRoomResponse(room.getId(), room.getTitle(), count);
+                return new FavoriteRoomResponse(title, count);
             })
             .collect(Collectors.toList());
     }
