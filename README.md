@@ -6,19 +6,15 @@ Spring Boot app for managing animals and rooms.
 
 **Docker (easiest):**
 ```bash
-docker compose up --build
+docker-compose up --build
 ```
 
-**Local:**
-1. Start PostgreSQL
-2. Create database: `CREATE DATABASE eurail_db;`
-3. Update `application.properties`
-4. Run: `mvn spring-boot:run`
-
-**Dev mode (H2):**
+**Local (dev profile with H2):**
 ```bash
 mvn spring-boot:run -Dspring-boot.run.profiles=dev
 ```
+
+H2 console available at `http://localhost:8080/h2-console`
 
 App runs on `http://localhost:8080`
 
@@ -45,7 +41,6 @@ App runs on `http://localhost:8080`
 - `DELETE /api/rooms/{roomId}/animals/{animalId}/favorite` - Unfavorite
 - `GET /api/rooms/favorites` - List favorites with counts
 
-See [CURL_COMMANDS.md](CURL_COMMANDS.md) for examples.
 
 ## Database
 
